@@ -10,6 +10,12 @@ function App() {
   const [forecast, setForecast] = useState(null);
 
   const handleSearchChange = (searchData) => {
+     if (!searchData) {
+      setCurrentWeather(null);
+      setForecast(null);
+      return;
+    }
+
     const [lat, lon] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(
