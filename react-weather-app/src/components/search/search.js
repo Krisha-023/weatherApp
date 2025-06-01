@@ -5,22 +5,20 @@ import { url, geoApiOptions } from "../../api";
 const Search = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
 
-  const loadOptions = (inputValue) => {
-    return fetch(
+  const loadOptions = async (inputValue) => {
+    const response = await fetch(
       `${url}?minPopulation=1000000&namePrefix=${inputValue}`,
       geoApiOptions
-    )
-      .then((response) => response.json())
-      .then((response) => {
+    );
+    const data = await response.json();
+    return {
+      options: data.data.map((city) => {
         return {
-          options: response.data.map((city) => {
-            return {
-              value: `${city.latitude} ${city.longitude}`,
-              label: `${city.name}, ${city.countryCode}`,
-            };
-          }),
+          value: `${city.latitude} ${city.longitude}`,
+          label: `${city.name}, ${city.countryCode}`,
         };
-      });
+      }),
+    };
   };
 
   const handleChange = (searchData) => {

@@ -23,6 +23,11 @@ const Forecast = ({ data }) => {
       <div className="forecast-list">
         {data.list.slice(0, 7).map((item, ind) => (
           <div className="daily-item" key={ind}>
+            <img
+              src={`icons/${item.weather[0].icon}.png`}
+              className="icon-small"
+              alt="weather"
+            />
             <label className="day">{forecastDays[ind]}</label>
             <div className="right-group">
               <label className="descriptions">

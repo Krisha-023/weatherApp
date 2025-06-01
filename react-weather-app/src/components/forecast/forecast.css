@@ -5,6 +5,10 @@
   color: #222222;
 }
 
+.icon-small {
+  width: 40px;
+}
+
 .daily-item {
   display: flex;
   align-items: center;
